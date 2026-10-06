@@ -1,0 +1,11 @@
+{
+  "name": "company-internal",
+  "owner": { "name": "Architecture Guild" },
+  "plugins": [
+    {
+      "name": "solution-factory",
+      "source": "./",
+      "description": "Pre-sales architecture & POC factory"
+    }
+  ]
+}

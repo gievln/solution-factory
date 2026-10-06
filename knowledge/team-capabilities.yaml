@@ -1,0 +1,80 @@
+# Capability matrix. Refresh quarterly from the skills survey.
+# level: 0 none · 1 aware · 2 hobby/tutorial · 3 delivered in prod with help · 4 delivered independently · 5 expert/can lead
+# radar: adopt | trial | assess | hold
+
+technologies:
+  python-fastapi:
+    slot: backend
+    radar: adopt
+    people: { alice: 5, bob: 4, chen: 4, dovile: 4, emil: 3, fatima: 3 }
+    delivered_projects: 9
+  java-spring-boot:
+    slot: backend
+    radar: adopt
+    people: { gabriel: 5, hanna: 4, ivan: 3 }
+    delivered_projects: 5
+  node-nestjs:
+    slot: backend
+    radar: trial
+    people: { jonas: 3, karla: 2 }
+    delivered_projects: 1
+  go:
+    slot: backend
+    radar: assess
+    people: { bob: 2 }
+    delivered_projects: 0
+  react-nextjs:
+    slot: frontend
+    radar: adopt
+    people: { karla: 5, lukas: 4, mia: 4 }
+    delivered_projects: 8
+  postgres:
+    slot: database
+    radar: adopt
+    people: { alice: 5, gabriel: 4, chen: 4, hanna: 4 }
+    delivered_projects: 15
+  dynamodb:
+    slot: database
+    radar: trial
+    people: { chen: 3 }
+    delivered_projects: 1
+  snowflake-dbt:
+    slot: data_pipeline
+    radar: adopt
+    people: { giedrius: 5, nora: 4, oskar: 4 }
+    delivered_projects: 6
+  terraform:
+    slot: iac
+    radar: adopt
+    people: { chen: 5, ivan: 4, emil: 4 }
+    delivered_projects: 12
+  aws-cdk:
+    slot: iac
+    radar: trial
+    people: { ivan: 3 }
+    delivered_projects: 1
+  kubernetes-eks:
+    slot: hosting
+    radar: trial
+    people: { chen: 4, ivan: 3 }
+    delivered_projects: 2
+  aws-ecs-fargate:
+    slot: hosting
+    radar: adopt
+    people: { chen: 5, emil: 4, ivan: 4 }
+    delivered_projects: 7
+  keycloak:
+    slot: auth
+    radar: adopt
+    people: { gabriel: 4, hanna: 3 }
+    delivered_projects: 3
+  aws-cognito:
+    slot: auth
+    radar: adopt
+    people: { chen: 4, emil: 3 }
+    delivered_projects: 4
+  mongodb:
+    slot: database
+    radar: hold
+    people: { jonas: 3 }
+    delivered_projects: 2

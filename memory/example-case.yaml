@@ -1,0 +1,57 @@
+case_id: "2025-031"
+client_alias: logistics-baltics-mid
+industry: logistics
+domain_tags: [fleet-tracking, b2b-portal, event-ingestion]
+region: EU (LT)
+tier: M
+compliance: [gdpr]
+problem_summary: >
+  Mid-size freight forwarder needed a customer portal showing live shipment status,
+  aggregating GPS events from 3 telematics vendors and their legacy TMS.
+status: delivered
+outcome_reason: "Won on price vs. a larger competitor; client valued the clear migration path to AWS."
+
+options:
+  - option_name: lean
+    hosting_id: H2
+    stack: { backend: python-fastapi, frontend: react-nextjs, database: postgres, iac: terraform }
+    infra_eur_month: [180, 260]
+    build_effort_pd: [70, 95]
+    confidence: high
+    recommended: false
+    rejection_reason: "Client IT required AWS for future SSO integration."
+  - option_name: balanced
+    hosting_id: H3
+    stack: { backend: python-fastapi, frontend: react-nextjs, database: postgres, messaging: aws-sqs, auth: aws-cognito, iac: terraform }
+    infra_eur_month: [650, 900]
+    build_effort_pd: [90, 120]
+    confidence: high
+    recommended: true
+    chosen_by_client: true
+  - option_name: enterprise
+    hosting_id: H4
+    stack: { backend: python-fastapi, frontend: react-nextjs, database: aurora-postgres, messaging: msk-kafka, auth: aws-cognito, iac: terraform }
+    infra_eur_month: [3200, 4500]
+    build_effort_pd: [150, 190]
+    confidence: medium
+    recommended: false
+    rejection_reason: "Over budget; volume did not justify Kafka."
+
+actuals:
+  infra_eur_month: 1080
+  build_effort_pd: 128
+  estimate_accuracy_infra: 1.39    # NAT gateway + CloudWatch logs underestimated
+  estimate_accuracy_effort: 1.22   # legacy TMS SOAP integration underestimated
+  poc_reuse_pct: 65
+
+lessons:
+  - category: estimation
+    lesson: "CloudWatch log ingestion from chatty telematics consumers was 3x the card; set log levels and retention in the template."
+  - category: integration
+    lesson: "Legacy TMS integrations: always add a 10-day spike; WSDLs were undocumented."
+  - category: stack
+    lesson: "SQS + Lambda consumers were sufficient for ~200 events/s; Kafka unnecessary below ~5k/s."
+
+assets:
+  - { asset_type: template, ref: "tpl-fastapi-react-ecs@2.3.0" }
+  - { asset_type: terraform-module, ref: "tfm-ecs-service@1.8.1" }
